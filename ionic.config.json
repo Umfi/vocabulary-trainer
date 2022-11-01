@@ -1,0 +1,7 @@
+{
+  "name": "Vocabulary Trainer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
