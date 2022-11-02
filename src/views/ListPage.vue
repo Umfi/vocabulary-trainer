@@ -11,19 +11,76 @@
           <ion-title size="large">Tab 1</ion-title>
         </ion-toolbar>
       </ion-header>
-    
-      <ExploreContainer name="Tab 1 page" />
+
+      <ion-searchbar></ion-searchbar>
+      <VocabelBoxList ref="boxes" />
+
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+        <ion-fab-button @click="addBox">
+          <ion-icon :icon="add" />
+        </ion-fab-button>
+      </ion-fab>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+import { defineComponent } from "vue";
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonSearchbar,
+  IonFab,
+  IonFabButton,
+  IonIcon,
+  modalController
+} from "@ionic/vue";
+import VocabelBoxList from "@/components/BoxList.vue";
+import { add } from "ionicons/icons";
+import BoxModal from "@/components/BoxModal.vue";
+import { createBox } from "@/data/box";
+import { showToast } from "@/plugins/Toast";
 
-export default  defineComponent({
-  name: 'ListPage',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+export default defineComponent({
+  name: "ListPage",
+  components: {
+    VocabelBoxList,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonPage,
+    IonSearchbar,
+    IonFab,
+    IonFabButton,
+    IonIcon,
+  },
+  setup() {
+    return {
+      add,
+    };
+  },
+  ionViewWillEnter() {
+    (this.$refs.boxes as any).load();
+  },
+  methods: {
+    async addBox() {
+      const modal = await modalController.create({
+        component: BoxModal,
+      });
+      modal.present();
+
+      const { data, role } = await modal.onWillDismiss();
+
+      if (role === "confirm") {
+        await createBox(data.name);
+        showToast(this.$t("Box has been added"));
+        (this.$refs.boxes as any).load();
+      }
+    },
+  },
 });
 </script>
