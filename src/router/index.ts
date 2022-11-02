@@ -28,6 +28,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/PractisePage.vue')
       },
       {
+        path: 'practise/:id',
+        component: () => import('@/views/PractisePage.vue')
+      },
+      {
         path: 'settings',
         component: () => import('@/views/SettingsPage.vue')
       }

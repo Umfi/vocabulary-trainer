@@ -6,7 +6,7 @@
           <h3>{{ box.name }}</h3>
           <p>{{ box.vocables.length }} Vocables</p>
         </ion-label>
-        <ion-button slot="end" size="default">
+        <ion-button slot="end" size="default" :href="'/tabs/practise/' + box.id">
           <ion-icon slot="icon-only" :icon="school" />
         </ion-button>
       </ion-item>
