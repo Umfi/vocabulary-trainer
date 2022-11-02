@@ -1,6 +1,6 @@
 const messages = {
     en: {
-        'List': 'List',
+        'List': 'Vocables',
         'Practice': 'Practice',
         'Settings': 'Settings',
         'Add Vocable': 'Add Vocable',
@@ -21,9 +21,13 @@ const messages = {
         'Do you really want to delete this vocable?': 'Do you really want to delete this vocable?',
         'DELETE': 'DELETE',
         'Cancle': 'Cancle',
+        'Wrong': 'Wrong',
+        'The correct answer is <b>x</b>': 'The correct answer is <b>{x}</b>',
+        'Okay': 'Okay',
+        'x vocables': '{x} vocables',
     },
     de: {
-        'List': 'Liste',
+        'List': 'Vokabeln',
         'Practice': 'Üben',
         'Settings': 'Einstellungen',
         'Add Vocable': 'Vokabel hinzufügen',
@@ -44,6 +48,10 @@ const messages = {
         'Do you really want to delete this vocable?': 'Möchten Sie diese Vokabel wirklich löschen?',
         'DELETE': 'LÖSCHEN',
         'Cancle': 'Abbrechen',
+        'Wrong': 'Falsch',
+        'The correct answer is <b>x</b>': 'Die richtige Antwort ist <b>{x}</b>',
+        'Okay': 'Okay',
+        'x vocables': '{x} Vokabeln',
     }
 };
 

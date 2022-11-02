@@ -2,17 +2,16 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 1</ion-title>
+        <ion-title>{{ $t("List") }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
+          <ion-title size="large">{{ $t("List") }}</ion-title>
         </ion-toolbar>
       </ion-header>
 
-      <ion-searchbar></ion-searchbar>
       <VocabelBoxList ref="boxes" />
 
       <ion-fab vertical="bottom" horizontal="center" slot="fixed">
@@ -32,7 +31,6 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonSearchbar,
   IonFab,
   IonFabButton,
   IonIcon,
@@ -53,7 +51,6 @@ export default defineComponent({
     IonTitle,
     IonContent,
     IonPage,
-    IonSearchbar,
     IonFab,
     IonFabButton,
     IonIcon,

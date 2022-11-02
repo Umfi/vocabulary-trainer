@@ -5,12 +5,12 @@
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="list" href="/tabs/list">
           <ion-icon :icon="listOutline" />
-          <ion-label>{{ $t("List")}}</ion-label>
+          <ion-label>{{ $t("List") }}</ion-label>
         </ion-tab-button>
           
         <ion-tab-button tab="practise" href="/tabs/practise">
           <ion-icon :icon="schoolOutline" />
-          <ion-label>{{ $t("Practice")}}</ion-label>
+          <ion-label>{{ $t("Practice") }}</ion-label>
         </ion-tab-button>
         
         <ion-tab-button tab="settings" href="/tabs/settings">

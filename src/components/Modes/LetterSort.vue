@@ -48,7 +48,9 @@ import {
   IonButton,
   IonLabel,
   IonItem,
+  alertController,
 } from "@ionic/vue";
+import { getTranslation } from "@/main";
 
 export default defineComponent({
   name: "LetterSort",
@@ -60,6 +62,7 @@ export default defineComponent({
     IonLabel,
     IonItem,
   },
+  emits: ["correct", "wrong"],
   props: {
     word: {
       type: String,
@@ -103,13 +106,26 @@ export default defineComponent({
       this.letters.push(letter);
       this.answer.splice(index, 1);
     },
-    checkAnswer() {
+    async checkAnswer() {
       const a = this.answer.join("").toLowerCase();
       const s = this.$props.solution.toLowerCase();
       if (a === s) {
         this.$emit("correct");
       } else {
-        this.$emit("wrong");
+        const alert = await alertController.create({
+          header: getTranslation().t("Wrong"),
+          message: getTranslation().t("The correct answer is <b>x</b>", { x: this.$props.solution }) ,
+          buttons: [
+            {
+              text: getTranslation().t("Okay"),
+              role: "confirm",
+              handler: () => {
+                this.$emit("wrong");
+              },
+            },
+          ],
+        });
+        await alert.present();
       }
     },
     getRandomLetter() {

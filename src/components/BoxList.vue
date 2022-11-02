@@ -4,7 +4,7 @@
       <ion-item :routerLink="'/tabs/list/' + box.id">
         <ion-label>
           <h3>{{ box.name }}</h3>
-          <p>{{ box.vocables.length }} Vocables</p>
+          <p>{{ $t("x vocables", { x: box.vocables.length }) }} </p>
         </ion-label>
         <ion-button slot="end" size="default" :href="'/tabs/practise/' + box.id">
           <ion-icon slot="icon-only" :icon="school" />
