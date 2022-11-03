@@ -21,7 +21,7 @@
         </ion-grid>
       </ion-item>
       <ion-item-options>
-        <ion-item-option>
+        <ion-item-option color="tertiary">
           <ion-icon slot="icon-only" :icon="pencil" @click="editVocable(vocable.id)"></ion-icon>
         </ion-item-option>
         <ion-item-option color="danger">

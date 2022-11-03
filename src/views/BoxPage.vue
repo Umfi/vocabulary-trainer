@@ -22,7 +22,7 @@
 
       <vocable-list :vocables="vocables" @deleteVocable="deleteVocable" @editVocable="editVocable"/>
 
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
         <ion-fab-button>
           <ion-icon :icon="add" />
         </ion-fab-button>
@@ -30,7 +30,7 @@
             <ion-fab-list side="start">
               <ion-fab-button @click="addVocable"><ion-icon :icon="createOutline" /></ion-fab-button>
             </ion-fab-list>
-            <ion-fab-list side="top">
+            <ion-fab-list side="end">
               <ion-fab-button @click="openFilePicker"><ion-icon :icon="cloudUploadOutline" /></ion-fab-button>
             </ion-fab-list>
       </ion-fab>
@@ -59,6 +59,7 @@ import {
   IonFabList,
   IonIcon,
   modalController,
+  loadingController
 } from "@ionic/vue";
 import { Box, getBox } from "@/data/box";
 import VocableList from "@/components/VocableList.vue";
@@ -105,8 +106,17 @@ export default defineComponent({
   },
   methods: {
     async loadData() {
+      const loading = await loadingController.create({
+        message: 'Loading...',
+        spinner: 'circles'
+      });
+      
+      loading.present();
+
       this.box = await getBox(this.id);
       this.vocables = (this.box as Box).vocables;
+
+      loading.dismiss();
     },
     async addVocable() {
       const modal = await modalController.create({
@@ -156,8 +166,16 @@ export default defineComponent({
         fileInput.click();
       }
     },
-    importVocables(_event: any) {
+    async importVocables(_event: any) {
       if (_event.target.files) {
+
+        const loading = await loadingController.create({
+          message: 'Importing...',
+          spinner: 'circles'
+        });
+        
+        loading.present();
+
         readXlsxFile(_event.target.files[0]).then(async (rows) => {
           const data = [];
           for (let i = 1; i < rows.length; i++) {
@@ -168,6 +186,8 @@ export default defineComponent({
           for (let i = 0; i < vocables.length; i++) {
             this.vocables.push(vocables[i]);
           }
+
+          loading.dismiss();
           showToast(this.$t("{x} vocables have been imported", { x: vocables.length }));
         })
       }

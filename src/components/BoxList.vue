@@ -11,7 +11,7 @@
         </ion-button>
       </ion-item>
       <ion-item-options>
-        <ion-item-option>
+        <ion-item-option color="tertiary">
           <ion-icon
             slot="icon-only"
             :icon="pencil"
@@ -42,7 +42,7 @@ import {
   IonItemOption,
   IonIcon,
   modalController,
-  alertController,
+  alertController
 } from "@ionic/vue";
 import { school, trash, pencil } from "ionicons/icons";
 import { Box, getBoxes, deleteBox, editBox } from "@/data/box";

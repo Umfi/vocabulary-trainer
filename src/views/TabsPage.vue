@@ -12,11 +12,7 @@
           <ion-icon :icon="schoolOutline" />
           <ion-label>{{ $t("Practice") }}</ion-label>
         </ion-tab-button>
-        
-        <ion-tab-button tab="settings" href="/tabs/settings">
-          <ion-icon :icon="settingsOutline" />
-          <ion-label>{{ $t("Settings") }}</ion-label>
-        </ion-tab-button>
+
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
