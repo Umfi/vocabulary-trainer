@@ -25,6 +25,10 @@ const messages = {
         'The correct answer is <b>x</b>': 'The correct answer is <b>{x}</b>',
         'Okay': 'Okay',
         'x vocables': '{x} vocables',
+        'Made it!': 'Made it!',
+        'You have practiced all vocables in this box.': 'You have practiced all vocables in this box.',
+        'Correct': 'Correct',
+        'You have practiced all your vocables. Come back later to practice again.': 'You have practiced all your vocables. Come back later to practice again.',
     },
     de: {
         'List': 'Vokabeln',
@@ -52,6 +56,10 @@ const messages = {
         'The correct answer is <b>x</b>': 'Die richtige Antwort ist <b>{x}</b>',
         'Okay': 'Okay',
         'x vocables': '{x} Vokabeln',
+        'Made it!': 'Geschafft!',
+        'You have practiced all vocables in this box.': 'Sie haben alle Vokabeln in dieser Box geübt.',
+        'Correct': 'Richtig',
+        'You have practiced all your vocables. Come back later to practice again.': 'Sie haben alle Ihre Vokabeln geübt. Kommen Sie später wieder, um erneut zu üben.',
     }
 };
 

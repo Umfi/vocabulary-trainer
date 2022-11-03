@@ -15,7 +15,7 @@
         </ion-toolbar>
       </ion-header>
 
-      <vocabel-list :vocables="vocables" @deleteVocable="deleteVocable" @editVocable="editVocable"/>
+      <vocable-list :vocables="vocables" @deleteVocable="deleteVocable" @editVocable="editVocable"/>
 
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button>
@@ -52,10 +52,10 @@ import {
   modalController,
 } from "@ionic/vue";
 import { Box, getBox } from "@/data/box";
-import VocabelList from "@/components/VocabelList.vue";
+import VocableList from "@/components/VocableList.vue";
 import { createVocable, Vocable, deleteVocable, editVocable } from "@/data/vocable";
 import { add, cloudUploadOutline, createOutline } from "ionicons/icons";
-import VocabelModal from "@/components/VocabelModal.vue";
+import VocableModal from "@/components/VocableModal.vue";
 import { showToast } from "@/plugins/Toast";
 
 export default defineComponent({
@@ -72,7 +72,7 @@ export default defineComponent({
     IonFabButton,
     IonFabList,
     IonIcon,
-    VocabelList,
+    VocableList,
   },
   data() {
     return {
@@ -99,15 +99,15 @@ export default defineComponent({
     },
     async addVocable() {
       const modal = await modalController.create({
-        component: VocabelModal,
+        component: VocableModal,
       });
       modal.present();
 
       const { data, role } = await modal.onWillDismiss();
 
       if (role === "confirm") {
-        const vocabel = await createVocable(this.id, data.foreign, data.native);
-        this.vocables.push(vocabel);
+        const vocable = await createVocable(this.id, data.foreign, data.native);
+        this.vocables.push(vocable);
         showToast(this.$t("Vocable has been added"));
       }
     },
@@ -125,7 +125,7 @@ export default defineComponent({
       const vocable = this.vocables.filter((v) => v.id == vocableId);
 
       const modal = await modalController.create({
-        component: VocabelModal,
+        component: VocableModal,
         componentProps: {vocable: vocable},
       });
       modal.present();

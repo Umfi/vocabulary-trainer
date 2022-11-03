@@ -3,6 +3,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>{{ $t("Practice") }}</ion-title>
+        <ion-progress-bar :value="progress"></ion-progress-bar>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -12,51 +13,50 @@
         </ion-toolbar>
       </ion-header>
 
-      <ion-grid class="ion-no-padding" v-if="id">
-        <ion-row>
-          <ion-col>
-            <ion-progress-bar
-              :value="progress[0]"
-              color="danger"
-            ></ion-progress-bar>
-          </ion-col>
-          <ion-col>
-            <ion-progress-bar
-              :value="progress[1]"
-              color="warning"
-            ></ion-progress-bar>
-          </ion-col>
-          <ion-col>
-            <ion-progress-bar
-              :value="progress[2]"
-              color="tertiary"
-            ></ion-progress-bar>
-          </ion-col>
-          <ion-col>
-            <ion-progress-bar
-              :value="progress[3]"
-              color="secondary"
-            ></ion-progress-bar>
-          </ion-col>
-          <ion-col>
-            <ion-progress-bar
-              :value="progress[4]"
-              color="success"
-            ></ion-progress-bar>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-card>
+      <ion-card v-if="!done">
         <ion-card-content>
           <LetterSort
             :key="currentWord.id + Math.random()"
             :word="currentWord.native"
             :solution="currentWord.foreign"
-            @correct="giveAnswer(true)"
-            @wrong="giveAnswer(false)"
+            @correct="correctAnswer"
+            @wrong="wrongAnswer"
           />
         </ion-card-content>
       </ion-card>
+
+      <ion-card v-if="done && id">
+        <ion-card-header>
+          <ion-card-title>{{ $t("Made it!") }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+          {{ $t("You have practiced all vocables in this box.") }}
+          <br>
+          {{ $t("Correct") }}: {{ correct }} <br />
+          {{ $t("Wrong") }}:  {{ wrong }}
+
+          <ion-footer>
+            <ion-button
+              class="ion-float-end ion-margin-top ion-margin-bottom"
+              fill="outline"
+              @click="restart"
+              >Restart</ion-button
+            >
+          </ion-footer>
+        </ion-card-content>
+      </ion-card>
+
+
+      <ion-card v-if="done && !id">
+        <ion-card-header>
+          <ion-card-title>{{ $t("Made it!") }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ $t("You have practiced all your vocables. Come back later to practice again.") }}
+        </ion-card-content>
+      </ion-card>
+
     </ion-content>
   </ion-page>
 </template>
@@ -70,17 +70,19 @@ import {
   IonTitle,
   IonContent,
   IonCard,
+  IonCardHeader,
+  IonCardTitle,
   IonCardContent,
   IonProgressBar,
-  IonGrid,
-  IonRow,
-  IonCol,
+  IonFooter,
+  IonButton,
   useIonRouter,
 } from "@ionic/vue";
 import LetterSort from "@/components/Modes/LetterSort.vue";
 import { Vocable } from "@/data/vocable";
 import { useRoute } from "vue-router";
-import { answerWord, getLearningProgress, getNextWord } from "@/data/learning";
+import { getBox } from "@/data/box";
+import { getDueVocables, giveAnswer } from "@/data/learning";
 
 export default defineComponent({
   name: "PractisePage",
@@ -92,11 +94,12 @@ export default defineComponent({
     IonContent,
     IonPage,
     IonCard,
+    IonCardHeader,
+    IonCardTitle,
     IonCardContent,
     IonProgressBar,
-    IonGrid,
-    IonRow,
-    IonCol,
+    IonFooter,
+    IonButton,
   },
   setup() {
     const ionRouter = useIonRouter();
@@ -107,23 +110,85 @@ export default defineComponent({
   },
   data() {
     return {
-      progress: [0, 0, 0, 0, 0],
-      currentWord: {
+      words: [] as Vocable[],
+      index: 0,
+      activeWordId: "",
+      correct: 0,
+      wrong: 0,
+      done: false,
+    };
+  },
+  computed: {
+    currentWord: function (): Vocable | null {
+      for (let i = 0; i < this.words.length; i++) {
+        if (this.words[i].id === this.activeWordId) {
+          return this.words[i];
+        }
+      }
+
+      return {
         id: "",
         native: "",
         foreign: "",
-      } as Vocable,
-    };
+      } as Vocable;
+    },
+    progress: function (): number {
+      return this.index / this.words.length;
+    },
   },
   async mounted() {
-    this.currentWord = await getNextWord(this.id);
-    this.progress = await getLearningProgress(this.id);
+    if (this.id) {
+      const box = await getBox(this.id);
+      if (box) {
+        this.words = box.vocables;
+      }
+    } else {
+      this.words = await getDueVocables();
+      if (this.words.length === 0) {
+        this.done = true;
+        return;
+      }
+    }
+
+    this.restart();
   },
   methods: {
-    async giveAnswer(correct: boolean) {
-      await answerWord(this.id, this.currentWord.id, correct);
-      this.currentWord = await getNextWord(this.id);
-      this.progress = await getLearningProgress(this.id);
+    nextWord() {
+      this.index++;
+      if (this.index > this.words.length - 1) {
+        this.done = true;
+      } else {
+        this.activeWordId = this.words[this.index].id;
+      }
+    },
+    async correctAnswer() {
+      if (this.id == undefined) {
+        if (this.currentWord) {
+          await giveAnswer(this.currentWord, true);
+        }
+      }
+
+      this.correct++;
+      this.nextWord();
+    },
+    async wrongAnswer() {
+      if (this.id == undefined) {
+        if (this.currentWord) {
+          await giveAnswer(this.currentWord, false);
+        }
+      }
+
+      this.wrong++;
+
+      this.nextWord();
+    },
+    restart() {
+      this.words.sort(() => Math.random() - 0.5);
+      this.index = 0;
+      this.activeWordId = this.words[this.index].id;
+      this.correct = 0;
+      this.wrong = 0;
+      this.done = false;
     },
   },
 });

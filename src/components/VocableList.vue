@@ -52,7 +52,7 @@ import { trash, pencil } from "ionicons/icons";
 import { getTranslation } from "@/main";
 
 export default defineComponent({
-  name: "VocabelList",
+  name: "VocableList",
   components: {
     IonItem,
     IonLabel,

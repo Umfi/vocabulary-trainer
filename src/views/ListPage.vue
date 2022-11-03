@@ -12,7 +12,7 @@
         </ion-toolbar>
       </ion-header>
 
-      <VocabelBoxList ref="boxes" />
+      <VocableBoxList ref="boxes" />
 
       <ion-fab vertical="bottom" horizontal="center" slot="fixed">
         <ion-fab-button @click="addBox">
@@ -36,7 +36,7 @@ import {
   IonIcon,
   modalController
 } from "@ionic/vue";
-import VocabelBoxList from "@/components/BoxList.vue";
+import VocableBoxList from "@/components/BoxList.vue";
 import { add } from "ionicons/icons";
 import BoxModal from "@/components/BoxModal.vue";
 import { createBox } from "@/data/box";
@@ -45,7 +45,7 @@ import { showToast } from "@/plugins/Toast";
 export default defineComponent({
   name: "ListPage",
   components: {
-    VocabelBoxList,
+    VocableBoxList,
     IonHeader,
     IonToolbar,
     IonTitle,

@@ -45,7 +45,7 @@ import { close } from "ionicons/icons";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "VocabelModal",
+  name: "VocableModal",
   props: {
     vocable: {
       type: Object,
