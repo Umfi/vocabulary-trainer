@@ -22,6 +22,7 @@
     "core-js": "^3.6.5",
     "dayjs": "^1.11.6",
     "ionicons": "^6.0.3",
+    "read-excel-file": "^5.5.3",
     "supermemo": "^2.0.17",
     "vue": "^3.2.21",
     "vue-i18n": "^9.2.2",

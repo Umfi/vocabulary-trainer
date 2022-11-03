@@ -107,3 +107,41 @@ export async function editVocable(boxId: string, vocable: Vocable) {
 
     await getStorage().set('boxes', boxes);
 }
+
+/**
+ * Import vocables
+ * @param boxId
+ * @param data
+ * @returns Vocable[]
+ */
+ export async function importVocables(boxId: string, data: any[]) {
+    const boxes = await getBoxes();
+    const index = boxes.findIndex((obj => obj.id == boxId));
+    if (index == -1) {
+        throw new Error('Box not found');
+    }
+
+    const vocables = [] as Vocable[];
+
+    for (let i = 0; i < data.length; i++) {
+        const id = uuid.v4();
+
+        const vocable: Vocable = {
+            id,
+            boxId,
+            native: data[i].native,
+            foreign: data[i].foreign,
+            interval: 0,
+            repetition: 0,
+            efactor: 2.5,
+            dueDate: dayjs(Date.now()).toISOString()
+        };
+
+        boxes[index].vocables.push(vocable);
+        vocables.push(vocable);
+    }
+
+    await getStorage().set('boxes', boxes);
+    
+    return vocables;
+}

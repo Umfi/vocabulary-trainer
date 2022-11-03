@@ -25,7 +25,7 @@
         </ion-card-content>
       </ion-card>
 
-      <ion-card v-if="done && id">
+      <ion-card v-if="done && id" color="primary">
         <ion-card-header>
           <ion-card-title>{{ $t("Made it!") }}</ion-card-title>
         </ion-card-header>
@@ -48,7 +48,7 @@
       </ion-card>
 
 
-      <ion-card v-if="done && !id">
+      <ion-card v-if="done && !id" color="primary">
         <ion-card-header>
           <ion-card-title>{{ $t("Made it!") }}</ion-card-title>
         </ion-card-header>

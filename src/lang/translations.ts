@@ -29,6 +29,7 @@ const messages = {
         'You have practiced all vocables in this box.': 'You have practiced all vocables in this box.',
         'Correct': 'Correct',
         'You have practiced all your vocables. Come back later to practice again.': 'You have practiced all your vocables. Come back later to practice again.',
+        '{x} vocables have been imported': '{x} vocables have been imported',
     },
     de: {
         'List': 'Vokabeln',
@@ -60,6 +61,7 @@ const messages = {
         'You have practiced all vocables in this box.': 'Sie haben alle Vokabeln in dieser Box geübt.',
         'Correct': 'Richtig',
         'You have practiced all your vocables. Come back later to practice again.': 'Sie haben alle Ihre Vokabeln geübt. Kommen Sie später wieder, um erneut zu üben.',
+        '{x} vocables have been imported': '{x} Vokabeln wurden importiert',
     }
 };
 

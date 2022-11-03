@@ -5,7 +5,7 @@
         <ion-grid>
           <ion-row>
             <ion-col class="ion-text-start">
-              <ion-label>
+              <ion-label class="ion-text-wrap">
                 {{ vocable.foreign }}
               </ion-label>
             </ion-col>
@@ -13,7 +13,7 @@
               <ion-label>|</ion-label>
             </ion-col>
             <ion-col class="ion-text-end">
-              <ion-label>
+              <ion-label class="ion-text-wrap">
                 {{ vocable.native }}
               </ion-label>
             </ion-col>

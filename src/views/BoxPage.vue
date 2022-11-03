@@ -6,6 +6,11 @@
           <ion-back-button default-href="/"></ion-back-button>
         </ion-buttons>
         <ion-title>{{ box.name }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button :href="'/tabs/practise/' + box.id" color="primary">
+            <ion-icon slot="icon-only" :icon="school" />
+          </ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -26,9 +31,12 @@
               <ion-fab-button @click="addVocable"><ion-icon :icon="createOutline" /></ion-fab-button>
             </ion-fab-list>
             <ion-fab-list side="top">
-              <ion-fab-button><ion-icon :icon="cloudUploadOutline" /></ion-fab-button>
+              <ion-fab-button @click="openFilePicker"><ion-icon :icon="cloudUploadOutline" /></ion-fab-button>
             </ion-fab-list>
       </ion-fab>
+
+      <input type="file" id="file-upload" style="display: none" @change="importVocables"/>
+
     </ion-content>
   </ion-page>
 </template>
@@ -44,6 +52,7 @@ import {
   IonContent,
   useIonRouter,
   IonButtons,
+  IonButton,
   IonBackButton,
   IonFab,
   IonFabButton,
@@ -53,10 +62,11 @@ import {
 } from "@ionic/vue";
 import { Box, getBox } from "@/data/box";
 import VocableList from "@/components/VocableList.vue";
-import { createVocable, Vocable, deleteVocable, editVocable } from "@/data/vocable";
-import { add, cloudUploadOutline, createOutline } from "ionicons/icons";
+import { createVocable, Vocable, deleteVocable, editVocable, importVocables } from "@/data/vocable";
+import { add, cloudUploadOutline, createOutline, school } from "ionicons/icons";
 import VocableModal from "@/components/VocableModal.vue";
 import { showToast } from "@/plugins/Toast";
+import readXlsxFile from 'read-excel-file'
 
 export default defineComponent({
   name: "BoxPage",
@@ -67,6 +77,7 @@ export default defineComponent({
     IonContent,
     IonPage,
     IonButtons,
+    IonButton,
     IonBackButton,
     IonFab,
     IonFabButton,
@@ -85,7 +96,7 @@ export default defineComponent({
 
     const route = useRoute();
     const id = route.params.id as string;
-    return { ionRouter, id, add, cloudUploadOutline, createOutline };
+    return { ionRouter, id, add, cloudUploadOutline, createOutline, school };
   },
   async ionViewDidEnter() {
     if (this.id) {
@@ -139,6 +150,28 @@ export default defineComponent({
         showToast(this.$t("Vocable has been updated"));
       }
     },
+    openFilePicker() {
+      const fileInput = document.getElementById("file-upload");
+      if (fileInput) {
+        fileInput.click();
+      }
+    },
+    importVocables(_event: any) {
+      if (_event.target.files) {
+        readXlsxFile(_event.target.files[0]).then(async (rows) => {
+          const data = [];
+          for (let i = 1; i < rows.length; i++) {
+            data.push({native: rows[i][0], foreign: rows[i][1]});
+          }
+
+          const vocables = await importVocables(this.id, data);
+          for (let i = 0; i < vocables.length; i++) {
+            this.vocables.push(vocables[i]);
+          }
+          showToast(this.$t("{x} vocables have been imported", { x: vocables.length }));
+        })
+      }
+    }
   },
 });
 </script>
