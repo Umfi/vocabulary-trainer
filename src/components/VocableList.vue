@@ -21,11 +21,11 @@
         </ion-grid>
       </ion-item>
       <ion-item-options>
-        <ion-item-option color="tertiary">
-          <ion-icon slot="icon-only" :icon="pencil" @click="editVocable(vocable.id)"></ion-icon>
+        <ion-item-option color="tertiary" @click="editVocable(vocable.id)">
+          <ion-icon slot="icon-only" :icon="pencil"></ion-icon>
         </ion-item-option>
-        <ion-item-option color="danger">
-          <ion-icon slot="icon-only" :icon="trash" @click="deleteVocable(vocable.id)"></ion-icon>
+        <ion-item-option color="danger" @click="deleteVocable(vocable.id)">
+          <ion-icon slot="icon-only" :icon="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>

@@ -4,26 +4,22 @@
       <ion-item :routerLink="'/tabs/list/' + box.id">
         <ion-label>
           <h3>{{ box.name }}</h3>
-          <p>{{ $t("x vocables", { x: box.vocables.length }) }} </p>
+          <p>{{ $t("x vocables", { x: box.vocables.length }) }}</p>
         </ion-label>
-        <ion-button slot="end" size="default" :href="'/tabs/practise/' + box.id">
+        <ion-button
+          slot="end"
+          size="default"
+          :href="'/tabs/practise/' + box.id"
+        >
           <ion-icon slot="icon-only" :icon="school" />
         </ion-button>
       </ion-item>
       <ion-item-options>
-        <ion-item-option color="tertiary">
-          <ion-icon
-            slot="icon-only"
-            :icon="pencil"
-            @click="editBox(box.id)"
-          ></ion-icon>
+        <ion-item-option color="tertiary" @click="editBox(box.id)">
+          <ion-icon slot="icon-only" :icon="pencil"></ion-icon>
         </ion-item-option>
-        <ion-item-option color="danger">
-          <ion-icon
-            slot="icon-only"
-            :icon="trash"
-            @click="deleteBox(box.id)"
-          ></ion-icon>
+        <ion-item-option color="danger" @click="deleteBox(box.id)">
+          <ion-icon slot="icon-only" :icon="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
@@ -42,7 +38,7 @@ import {
   IonItemOption,
   IonIcon,
   modalController,
-  alertController
+  alertController,
 } from "@ionic/vue";
 import { school, trash, pencil } from "ionicons/icons";
 import { Box, getBoxes, deleteBox, editBox } from "@/data/box";

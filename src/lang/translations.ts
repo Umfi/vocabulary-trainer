@@ -30,6 +30,11 @@ const messages = {
         'Correct': 'Correct',
         'You have practiced all your vocables. Come back later to practice again.': 'You have practiced all your vocables. Come back later to practice again.',
         '{x} vocables have been imported': '{x} vocables have been imported',
+        'Restart': 'Restart',
+        'Warning': 'Warning',
+        'Name can not be empty.': 'Name can not be empty.',
+        'Word can not be empty.': 'Word can not be empty.',
+        'Translation can not be empty.': 'Translation can not be empty.',
     },
     de: {
         'List': 'Vokabeln',
@@ -62,6 +67,11 @@ const messages = {
         'Correct': 'Richtig',
         'You have practiced all your vocables. Come back later to practice again.': 'Sie haben alle Ihre Vokabeln geübt. Kommen Sie später wieder, um erneut zu üben.',
         '{x} vocables have been imported': '{x} Vokabeln wurden importiert',
+        'Restart': 'Neustart',
+        'Warning': 'Warnung',
+        'Name can not be empty.': 'Name darf nicht leer sein.',
+        'Word can not be empty.': 'Wort darf nicht leer sein.',
+        'Translation can not be empty.': 'Übersetzung darf nicht leer sein.',
     }
 };
 

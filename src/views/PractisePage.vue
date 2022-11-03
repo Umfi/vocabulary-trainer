@@ -36,12 +36,13 @@
           {{ $t("Correct") }}: {{ correct }} <br />
           {{ $t("Wrong") }}:  {{ wrong }}
 
-          <ion-footer>
+          <ion-footer class="ion-margin-top">
             <ion-button
+              color="light"
               class="ion-float-end ion-margin-top ion-margin-bottom"
               fill="outline"
               @click="restart"
-              >Restart</ion-button
+              >{{ $t("Restart") }}</ion-button
             >
           </ion-footer>
         </ion-card-content>

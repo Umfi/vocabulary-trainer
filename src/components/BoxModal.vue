@@ -23,6 +23,7 @@
 </template>
 
 <script lang="ts">
+import { getTranslation } from "@/main";
 import {
   IonContent,
   IonHeader,
@@ -36,6 +37,7 @@ import {
   IonFooter,
   IonIcon,
   modalController,
+  alertController
 } from "@ionic/vue";
 import { close } from "ionicons/icons";
 import { defineComponent } from "vue";
@@ -82,7 +84,19 @@ export default defineComponent({
     cancel() {
       return modalController.dismiss(null, "cancel");
     },
-    confirm() {
+    async confirm() {
+
+      if (this.name.length == 0) {
+        const alert = await alertController.create({
+          header: getTranslation().t("Warning"),
+          message: getTranslation().t("Name can not be empty."),
+          buttons: [getTranslation().t("Okay")],
+        });
+
+        await alert.present();
+        return;
+      }
+
       return modalController.dismiss(
         { id: this.id, name: this.name },
         "confirm"

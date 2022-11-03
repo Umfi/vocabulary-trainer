@@ -1,7 +1,9 @@
 <template>
   <ion-header>
     <ion-toolbar>
-      <ion-title>{{ (id == 0) ? $t("Add Vocable") : $t("Edit Vocable") }}</ion-title>
+      <ion-title>{{
+        id == 0 ? $t("Add Vocable") : $t("Edit Vocable")
+      }}</ion-title>
       <ion-buttons slot="end">
         <ion-button @click="cancel">
           <ion-icon slot="icon-only" :icon="close"></ion-icon>
@@ -27,6 +29,7 @@
 </template>
 
 <script lang="ts">
+import { getTranslation } from "@/main";
 import {
   IonContent,
   IonHeader,
@@ -40,6 +43,7 @@ import {
   IonFooter,
   IonIcon,
   modalController,
+  alertController,
 } from "@ionic/vue";
 import { close } from "ionicons/icons";
 import { defineComponent } from "vue";
@@ -63,7 +67,7 @@ export default defineComponent({
     IonLabel,
     IonFooter,
     IonInput,
-    IonIcon
+    IonIcon,
   },
   setup() {
     return {
@@ -88,7 +92,29 @@ export default defineComponent({
     cancel() {
       return modalController.dismiss(null, "cancel");
     },
-    confirm() {
+    async confirm() {
+      if (this.native.length == 0) {
+        const alert = await alertController.create({
+          header: getTranslation().t("Warning"),
+          message: getTranslation().t("Word can not be empty."),
+          buttons: [getTranslation().t("Okay")],
+        });
+
+        await alert.present();
+        return;
+      }
+
+      if (this.foreign.length == 0) {
+        const alert = await alertController.create({
+          header: getTranslation().t("Warning"),
+          message: getTranslation().t("Translation can not be empty."),
+          buttons: [getTranslation().t("Okay")],
+        });
+
+        await alert.present();
+        return;
+      }
+      
       return modalController.dismiss(
         { id: this.id, native: this.native, foreign: this.foreign },
         "confirm"
