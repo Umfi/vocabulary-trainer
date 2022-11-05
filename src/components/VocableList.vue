@@ -2,19 +2,16 @@
   <ion-list>
     <ion-item-sliding v-for="vocable in vocables" :key="vocable.id">
       <ion-item>
-        <ion-grid>
+        <ion-grid >
           <ion-row>
-            <ion-col class="ion-text-start">
+            <ion-col class="ion-text-start line">
               <ion-label class="ion-text-wrap">
-                {{ vocable.foreign }}
+                {{ vocable.native }}
               </ion-label>
-            </ion-col>
-            <ion-col size="1" class="ion-text-center">
-              <ion-label>|</ion-label>
             </ion-col>
             <ion-col class="ion-text-end">
               <ion-label class="ion-text-wrap">
-                {{ vocable.native }}
+                {{ vocable.foreign }}
               </ion-label>
             </ion-col>
           </ion-row>
@@ -104,3 +101,9 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.line {
+  border-right: 1px solid #ccc;
+}
+
+</style>
