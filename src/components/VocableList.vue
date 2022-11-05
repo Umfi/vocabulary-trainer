@@ -1,6 +1,6 @@
 <template>
   <ion-list>
-    <ion-item-sliding v-for="vocable in vocables" :key="vocable.id">
+    <ion-item-sliding v-for="vocable in vocables" :key="vocable.id" class="animate__animated animate__slideInRight">
       <ion-item>
         <ion-grid >
           <ion-row>

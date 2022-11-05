@@ -14,7 +14,7 @@
 
       <VocableBoxList ref="boxes" />
 
-      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animate__animated animate__zoomIn">
         <ion-fab-button @click="addBox">
           <ion-icon :icon="add" />
         </ion-fab-button>

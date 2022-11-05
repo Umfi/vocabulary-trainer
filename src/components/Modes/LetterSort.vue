@@ -1,42 +1,43 @@
 <template>
   <div>
-    <ion-item lines="none">
-      <ion-label class="ion-text-center ion-padding-top">
-        <h1>{{ word }}</h1>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col class="ion-text-center">
-            <ion-button
-              v-for="(letter, index) of answer"
-              :key="index"
-              @click="removeAnswer(letter, index)"
-              color="primary"
-            >
-              {{ letter }}
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    <div>
+      <ion-item lines="none">
+        <ion-label class="ion-text-center ion-padding-top animate__animated  animate__flipInX">
+          <h1 class="ion-text-wrap">{{ word }}</h1>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="ion-text-center">
+              <ion-button
+                v-for="(letter, index) of answer"
+                :key="index"
+                @click="removeAnswer(letter, index)"
+                color="primary"
+              >
+                {{ letter }}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+    <ion-grid class="animate__animated animate__delay-1s animate__flipInY" style="--animate-delay: 0.5s;">
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button
+            v-for="(letter, index) of letters"
+            :key="index"
+            @click="giveAnswer(letter, index)"
+            color="light"
+          >
+            {{ letter }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <ion-button
-          v-for="(letter, index) of letters"
-          :key="index"
-          @click="giveAnswer(letter, index)"
-          color="light"
-        >
-          {{ letter }}
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </template>
 
 <script lang="ts">

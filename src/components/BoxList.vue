@@ -1,6 +1,6 @@
 <template>
   <ion-list>
-    <ion-item-sliding v-for="box in boxes" :key="box.id">
+    <ion-item-sliding v-for="box in boxes" :key="box.id" class="animate__animated animate__fadeIn">
       <ion-item :routerLink="'/tabs/list/' + box.id">
         <ion-label>
           <h3>{{ box.name }}</h3>

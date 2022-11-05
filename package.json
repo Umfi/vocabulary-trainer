@@ -28,7 +28,8 @@
     "vue": "^3.2.21",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.12",
-    "vue-uuid": "^3.0.0"
+    "vue-uuid": "^3.0.0",
+    "animate.css": "^4.1.1"
   },
   "devDependencies": {
     "@capacitor/cli": "4.4.0",

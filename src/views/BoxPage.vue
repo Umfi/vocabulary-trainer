@@ -22,17 +22,17 @@
 
       <vocable-list :vocables="vocables" @deleteVocable="deleteVocable" @editVocable="editVocable"/>
 
-      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animate__animated animate__delay-2s animate__fadeIn">
         <ion-fab-button>
           <ion-icon :icon="add" />
         </ion-fab-button>
 
-            <ion-fab-list side="start">
-              <ion-fab-button @click="addVocable"><ion-icon :icon="createOutline" /></ion-fab-button>
-            </ion-fab-list>
-            <ion-fab-list side="end">
-              <ion-fab-button @click="openFilePicker"><ion-icon :icon="cloudUploadOutline" /></ion-fab-button>
-            </ion-fab-list>
+        <ion-fab-list side="start">
+          <ion-fab-button @click="addVocable"><ion-icon :icon="createOutline" /></ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="end">
+          <ion-fab-button @click="openFilePicker"><ion-icon :icon="cloudUploadOutline" /></ion-fab-button>
+        </ion-fab-list>
       </ion-fab>
 
       <input type="file" id="file-upload" style="display: none" @change="importVocables"/>

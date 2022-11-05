@@ -14,7 +14,7 @@
       </ion-header>
 
       <ion-card v-if="!done">
-        <ion-card-content>
+        <ion-card-content> 
           <LetterSort
             :key="currentWord.id + Math.random()"
             :word="currentWord.native"
