@@ -16,6 +16,16 @@
       <ion-card v-if="!done">
         <ion-card-content> 
           <LetterSort
+            v-if="activeMode == 'LetterSort'"
+            :key="currentWord.id + Math.random()"
+            :word="currentWord.native"
+            :solution="currentWord.foreign"
+            @correct="correctAnswer"
+            @wrong="wrongAnswer"
+          />
+
+          <TypeMode
+             v-if="activeMode == 'TypeMode'"
             :key="currentWord.id + Math.random()"
             :word="currentWord.native"
             :solution="currentWord.foreign"
@@ -80,6 +90,8 @@ import {
   useIonRouter,
 } from "@ionic/vue";
 import LetterSort from "@/components/Modes/LetterSort.vue";
+import TypeMode from "@/components/Modes/TypeMode.vue";
+
 import { Vocable } from "@/data/vocable";
 import { useRoute } from "vue-router";
 import { getBox } from "@/data/box";
@@ -89,6 +101,7 @@ export default defineComponent({
   name: "PractisePage",
   components: {
     LetterSort,
+    TypeMode,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -117,6 +130,7 @@ export default defineComponent({
       correct: 0,
       wrong: 0,
       done: false,
+      activeMode: 'LetterSort',
     };
   },
   computed: {
@@ -161,6 +175,8 @@ export default defineComponent({
       } else {
         this.activeWordId = this.words[this.index].id;
       }
+
+      this.activeMode = Math.random() < 0.8 ? 'LetterSort' : 'TypeMode';
     },
     async correctAnswer() {
       if (this.id == undefined) {

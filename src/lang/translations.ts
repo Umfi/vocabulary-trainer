@@ -35,6 +35,7 @@ const messages = {
         'Name can not be empty.': 'Name can not be empty.',
         'Word can not be empty.': 'Word can not be empty.',
         'Translation can not be empty.': 'Translation can not be empty.',
+        'Check answer': 'Check answer',
     },
     de: {
         'List': 'Vokabeln',
@@ -72,6 +73,7 @@ const messages = {
         'Name can not be empty.': 'Name darf nicht leer sein.',
         'Word can not be empty.': 'Wort darf nicht leer sein.',
         'Translation can not be empty.': 'Übersetzung darf nicht leer sein.',
+        'Check answer': 'Antwort überprüfen',
     }
 };
 

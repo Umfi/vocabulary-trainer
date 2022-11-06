@@ -6,7 +6,7 @@
           <ion-back-button default-href="/"></ion-back-button>
         </ion-buttons>
         <ion-title>{{ box.name }}</ion-title>
-        <ion-buttons slot="end">
+        <ion-buttons slot="end" v-show="vocables.length > 0">
           <ion-button :href="'/tabs/practise/' + box.id" color="primary">
             <ion-icon slot="icon-only" :icon="school" />
           </ion-button>
@@ -22,7 +22,7 @@
 
       <vocable-list :vocables="vocables" @deleteVocable="deleteVocable" @editVocable="editVocable"/>
 
-      <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animate__animated animate__delay-2s animate__fadeIn">
+      <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animate__animated animate__delay-1s animate__zoomIn">
         <ion-fab-button>
           <ion-icon :icon="add" />
         </ion-fab-button>
