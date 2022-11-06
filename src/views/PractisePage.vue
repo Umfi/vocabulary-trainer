@@ -32,6 +32,16 @@
             @correct="correctAnswer"
             @wrong="wrongAnswer"
           />
+
+          <QuizMode
+             v-if="activeMode == 'QuizMode'"
+            :key="currentWord.id + Math.random()"
+            :word="currentWord.native"
+            :solution="currentWord.foreign"
+            :answers="[currentWord.foreign, words[Math.floor(Math.random() * words.length)].foreign, words[Math.floor(Math.random() * words.length)].foreign, words[Math.floor(Math.random() * words.length)].foreign]"
+            @correct="correctAnswer"
+            @wrong="wrongAnswer"
+          />
         </ion-card-content>
       </ion-card>
 
@@ -91,6 +101,7 @@ import {
 } from "@ionic/vue";
 import LetterSort from "@/components/Modes/LetterSort.vue";
 import TypeMode from "@/components/Modes/TypeMode.vue";
+import QuizMode from "@/components/Modes/QuizMode.vue";
 
 import { Vocable } from "@/data/vocable";
 import { useRoute } from "vue-router";
@@ -102,6 +113,7 @@ export default defineComponent({
   components: {
     LetterSort,
     TypeMode,
+    QuizMode,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -176,7 +188,7 @@ export default defineComponent({
         this.activeWordId = this.words[this.index].id;
       }
 
-      this.activeMode = Math.random() < 0.8 ? 'LetterSort' : 'TypeMode';
+      this.chooseMode();
     },
     async correctAnswer() {
       if (this.id == undefined) {
@@ -199,6 +211,21 @@ export default defineComponent({
 
       this.nextWord();
     },
+    chooseMode() {
+      const rand = Math.random();
+      
+      if (rand < 0.5 ) {
+        this.activeMode ='LetterSort';
+
+        if (this.words[this.index].foreign.length > 14) {
+          this.activeMode = Math.random() < 0.5 ? 'TypeMode' : 'QuizMode';
+        }
+      } else if (rand < 0.9) {
+        this.activeMode = 'QuizMode';
+      } else {
+        this.activeMode = 'TypeMode';
+      }
+    },
     restart() {
       this.words.sort(() => Math.random() - 0.5);
       this.index = 0;
@@ -206,6 +233,7 @@ export default defineComponent({
       this.correct = 0;
       this.wrong = 0;
       this.done = false;
+      this.chooseMode();
     },
   },
 });
