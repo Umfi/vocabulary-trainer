@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'dev.umfahrer.vocabulary',
   appName: 'Vocabulary Trainer',
   webDir: 'dist',
   bundledWebRuntime: false
