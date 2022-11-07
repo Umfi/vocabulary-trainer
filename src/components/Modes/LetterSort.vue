@@ -31,6 +31,7 @@
             :key="index"
             @click="giveAnswer(letter, index)"
             color="light"
+            v-show="letter !== ' '"
           >
             {{ letter }}
           </ion-button>
@@ -96,8 +97,22 @@ export default defineComponent({
   },
   methods: {
     giveAnswer(letter: string, index: number) {
+      const solutionAsArray = [...this.$props.solution];
+
+      if (typeof solutionAsArray[this.answer.length] !== 'undefined') {
+        if (solutionAsArray[this.answer.length] === ' ') {
+          this.answer.push(" ");
+        }
+      }
+
       this.answer.push(letter);
       this.letters.splice(index, 1);
+
+      if (typeof solutionAsArray[this.answer.length] !== 'undefined') {
+        if (solutionAsArray[this.answer.length] === ' ') {
+          this.answer.push(" ");
+        }
+      }
 
       if (this.answer.length == this.$props.solution.length) {
         this.checkAnswer();
