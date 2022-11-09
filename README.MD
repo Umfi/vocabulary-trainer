@@ -14,11 +14,11 @@ This is a hybrid app build with Ionic Vue.
 # Screenshots
 
 <p align="center">
-    <img src="https://github.com/Umfi/vocabulary-trainer/blob/master/screenshots/1.png?raw=true" height="400" />
-    <img src="https://github.com/Umfi/vocabulary-trainer/blob/master/screenshots/2.png?raw=true" height="400" />
-    <img src="https://github.com/Umfi/vocabulary-trainer/blob/master/screenshots/3.png?raw=true"  height="400" />
-    <img src="https://github.com/Umfi/vocabulary-trainer/blob/master/screenshots/4.png?raw=true"  height="400" />
-    <img src="https://github.com/Umfi/vocabulary-trainer/blob/master/screenshots/5.png?raw=true"  height="400" />
+    <img src="https://github.com/Umfi/vocabulary-trainer/blob/main/screenshots/1.png?raw=true" height="400" />
+    <img src="https://github.com/Umfi/vocabulary-trainer/blob/main/screenshots/2.png?raw=true" height="400" />
+    <img src="https://github.com/Umfi/vocabulary-trainer/blob/main/screenshots/3.png?raw=true"  height="400" />
+    <img src="https://github.com/Umfi/vocabulary-trainer/blob/main/screenshots/4.png?raw=true"  height="400" />
+    <img src="https://github.com/Umfi/vocabulary-trainer/blob/main/screenshots/5.png?raw=true"  height="400" />
 </p>
 
 # Latest Build
