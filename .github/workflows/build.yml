@@ -19,6 +19,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
+      
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_PUBLICPATH: "/"
 
       - name: Install Cordova
         run: npm install -g cordova
