@@ -22,4 +22,6 @@ This is a hybrid app build with Ionic Vue.
 </p>
 
 # Latest Build
-<a href="https://github.com/Umfi/vocabulary-trainer/releases/download/latest-release/vocabulary-trainer-latest.apk" target="_blank">Download (APK)</a>
+<a href="https://umfi.github.io/vocabulary-trainer" target="_blank">Web-Version</a>
+
+<a href="https://github.com/Umfi/vocabulary-trainer/releases/download/latest-release/vocabulary-trainer-latest.apk" target="_blank">Download for Android (APK)</a>
