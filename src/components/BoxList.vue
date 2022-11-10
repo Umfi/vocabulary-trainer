@@ -9,7 +9,8 @@
         <ion-button
           slot="end"
           size="default"
-          :href="'/tabs/practise/' + box.id"
+          @click="$event.stopPropagation()"
+          :router-link="'/tabs/practise/' + box.id"
           v-show="box.vocables.length > 0"
         >
           <ion-icon slot="icon-only" :icon="school" />

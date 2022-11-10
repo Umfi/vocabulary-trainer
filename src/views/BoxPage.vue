@@ -7,7 +7,7 @@
         </ion-buttons>
         <ion-title>{{ box.name }}</ion-title>
         <ion-buttons slot="end" v-show="vocables.length > 0">
-          <ion-button :href="'/tabs/practise/' + box.id" color="primary">
+          <ion-button :router-link="'/tabs/practise/' + box.id" color="primary">
             <ion-icon slot="icon-only" :icon="school" />
           </ion-button>
         </ion-buttons>
