@@ -70,7 +70,7 @@ import { showToast } from "@/plugins/Toast";
 import readXlsxFile from 'read-excel-file'
 
 export default defineComponent({
-  name: "BoxPage",
+  name: "VocablesDetailPage",
   components: {
     IonHeader,
     IonToolbar,

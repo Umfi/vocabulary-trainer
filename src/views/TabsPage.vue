@@ -5,7 +5,7 @@
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="list" href="/tabs/list">
           <ion-icon :icon="listOutline" />
-          <ion-label>{{ $t("List") }}</ion-label>
+          <ion-label>{{ $t("Vocables") }}</ion-label>
         </ion-tab-button>
           
         <ion-tab-button tab="practise" href="/tabs/practise">

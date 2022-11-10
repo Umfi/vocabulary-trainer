@@ -2,17 +2,17 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ $t("List") }}</ion-title>
+        <ion-title>{{ $t("Vocables") }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">{{ $t("List") }}</ion-title>
+          <ion-title size="large">{{ $t("Vocables") }}</ion-title>
         </ion-toolbar>
       </ion-header>
 
-      <VocableBoxList ref="boxes" />
+      <BoxList ref="boxes" />
 
       <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animate__animated animate__zoomIn">
         <ion-fab-button @click="addBox">
@@ -36,16 +36,16 @@ import {
   IonIcon,
   modalController
 } from "@ionic/vue";
-import VocableBoxList from "@/components/BoxList.vue";
+import BoxList from "@/components/BoxList.vue";
 import { add } from "ionicons/icons";
 import BoxModal from "@/components/BoxModal.vue";
 import { createBox } from "@/data/box";
 import { showToast } from "@/plugins/Toast";
 
 export default defineComponent({
-  name: "ListPage",
+  name: "VocablesPage",
   components: {
-    VocableBoxList,
+    BoxList,
     IonHeader,
     IonToolbar,
     IonTitle,

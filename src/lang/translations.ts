@@ -1,6 +1,6 @@
 const messages = {
     en: {
-        'List': 'Vocables',
+        'Vocables': 'Vocables',
         'Practice': 'Practice',
         'Settings': 'Settings',
         'Add Vocable': 'Add Vocable',
@@ -38,7 +38,7 @@ const messages = {
         'Check answer': 'Check answer',
     },
     de: {
-        'List': 'Vokabeln',
+        'Vocables': 'Vokabeln',
         'Practice': 'Üben',
         'Settings': 'Einstellungen',
         'Add Vocable': 'Vokabel hinzufügen',

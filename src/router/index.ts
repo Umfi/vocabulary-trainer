@@ -17,11 +17,11 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'list',
-        component: () => import('@/views/ListPage.vue')
+        component: () => import('@/views/VocablesPage.vue')
       },
       {
         path: 'list/:id',
-        component: () => import('@/views/BoxPage.vue')
+        component: () => import('@/views/VocablesDetailPage.vue')
       },
       {
         path: 'practise',
